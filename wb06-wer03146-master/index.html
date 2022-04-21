@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="generator" content="Hugo 0.62.2" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">CS559 Workbook 6: The train</h1>
+	</header>
+	<div class="content main__content clearfix">
+		<p>This workbook is different - it is mainly one programming assignment, making a train. Last year, we tacked this on as part of workbook 5. This year, it's a whole workbook to give you enough time.</p>
+<p>There is a page besides the train with one small exercise on it. But mainly, this workbook is about the train.</p>
+<h2 id="required-reading">Required Reading</h2>
+<p>There is no new required reading for this week. The readings on curves were part of Workbook 5. If you haven't read them, now is a good time to do it. Doing the train will require you to understand the key concepts of curves. Some curve topics are less important for the train, but will come back for the exam.</p>
+<p><strong>Textbook:</strong> Curves are covered in <a href="https://canvas.wisc.edu/files/10881438/">Fundamentals of CG-Ch15.pdf</a>.  <a href="https://canvas.wisc.edu/files/10881446/">Hart-Ch20.pdf</a> is strongly recommended, as it covers much of the same material in a different way. We won't cover all the material in class. The sections are:</p>
+<ol>
+<li>FCG 15.1 - basic ideas of curves, including parameterizations and piecewise representations</li>
+<li>FCG 15.2 - curve properties (especially continuity)</li>
+<li>FCG 15.3 - polynomial pieces - you need to have the basic intuitions, however, you will not need to do the derivations yourself.</li>
+<li>FCG 15.4 - putting pieces together - this makes things sound more complicated than they are</li>
+<li>FCG 15.5 - cubics - you'll need cardinals for the train</li>
+<li>FCG 15.6.1 - Bézier curves - very important, since they are what gets used in Canvas and many other things.</li>
+<li>FCG 15.6.2 - B-Spline curves - (and 15.6.3 and 15.6.4 which are advanced kinds of B-Spline curves) is optional.</li>
+</ol>
+<p>In Hart, you should read this to clarify and reinforce the required material above, but there isn't anything new, so this can be considered optional.</p>
+<ol>
+<li>Hart 20.0 - basics of curves, a good review of the terms discussed in FCG 15.1-15.3</li>
+<li>Hart 20.1 - the wiggle theorem - make sure you have the intuition that an nth degree polynomial has (at most) n-1 wiggles.</li>
+<li>Hart 20.2 - Lagrangian curves - this is also 15.3.6 in FCG - understand the basic idea to know why we don't use these things.</li>
+<li>Hart 20.3 - Hermite curves - these are in 15.3.4 and 15.5.2 of FCG. You won't need to derive them, but understanding what they are will be useful for Beziers and Cardinals, which we will use a lot.</li>
+<li>Hart 20.4 - Bézier curves - these are important, so seeing them more than once may help.</li>
+</ol>
+<p>The rest of the Chapter focuses on B-Splines and rational curves, which we won't cover in class.</p>
+<h2 id="rubrics-for-grading">Rubrics for Grading</h2>
+<p>Note: while more than 100 points are possible, we will only put up to 100 points into Canvas for your score. The train features are explained on the <a href="./docs/2/#train-page">Page2(The Train:train page)</a>.</p>
+<p>Non-train thing (10pts) :</p>
+<ul>
+<li>10pts - exercise 1-1 - make a polygon that appears different depending on the fill rule</li>
+</ul>
+<p>Train Basics (70pts):</p>
+<ul>
+<li>15pts - drawing the track as a simple curve that interpolates the control points</li>
+<li>15pts - train goes around the track</li>
+<li>10pts - the interface still works (the track can be moved and the run slider works, even while the train is in motion)</li>
+<li>5pts - train has a front</li>
+<li>10pts - train points in the right direction as it goes around the track</li>
+<li>5pts - track configuration shows off arc length (train should speed up and slow down if arc length parameterization is turned off)</li>
+<li>10pts - your README.md explains which features you did and did not implement, and which ones you think work correctly.</li>
+</ul>
+<p>Technical bonuses:</p>
+<ul>
+<li>5 pts - Arc Length parameterization (train goes at a relatively constant speed as it goes around the track, no matter what the control point spacing is). You must add a checkbox to turn this on and off. This one is hard, but it enables several of the other things, so it is actually worth a lot</li>
+<li>5 pts - Rail Ties (1 pt for ties drawn perpendicular to the track, 4 pts for being drawn evenly spaced with arc-length parameterization and in the right directions)</li>
+<li>3 pts - Parallel rails</li>
+<li>5 pts - Multiple cars (requires keeping the cars a fixed distance apart)</li>
+<li>3 pts - Trucked wheels (requires keeping the pairs of wheels the correct distance apart and on the track, and having the train car positioned appropriately - this is only for people who are into trains and appreciate this detail)</li>
+<li>1 pts - slider to control tension</li>
+<li>2 pts - switchable B-Splines</li>
+<li>2 pts - Smoke</li>
+</ul>
+<p>Artistic merit bonuses (these are at the grader's discretion):</p>
+<ul>
+<li>1pt nice looking train</li>
+<li>1pt nice looking track</li>
+<li>1pt nice looking scenery</li>
+<li>1pt scenery adapts to the track</li>
+</ul>
+<h2 id="assessment">Assessment</h2>
+<p>The graders will check that you have done the required programs correctly. We'll use a local server for grading your workbooks.</p>
+<p>The grader will check that you have correctly done the <code>README.md</code> file. This is important because some of the train features must be described in the README for you to get credit.</p>
+<p>There are bonus point opportunities.</p>
+<h2 id="get-started">Get Started</h2>
+<p>Don't forget to commit and push as you work!</p>
+<p>Get started on <a href="./docs/1/">Page1(Some leftovers)</a>, and the train comes on <a href="./docs/2/">Page2(The Train)</a></p>
+
+	</div>
+    <ul>
+    
+    
+    </ul>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 6: The Train! (and another thing)</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (CS559 Workbook 6: The train) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: Some leftovers </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: The Train </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

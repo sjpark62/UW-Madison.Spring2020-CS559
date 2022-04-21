@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Workbook 6: The Train! (and another thing)</title>
+    <link>/docs/</link>
+    <description>Recent content in Docs on Workbook 6: The Train! (and another thing)</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Feb 2020 19:51:01 -0600</lastBuildDate>
+    
+	<atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Some leftovers</title>
+      <link>/docs/1/</link>
+      <pubDate>Tue, 18 Feb 2020 19:50:53 -0600</pubDate>
+      
+      <guid>/docs/1/</guid>
+      <description>This page isn&#39;t related to the train, it has a detail that was left out of prior workbooks.
+Polygon Filling In class, we discussed that there were different rules for filling polygons, and that HTML 2D Canvas supported multiple ones. We went over the rules briefly in class.
+The official documentation for fill says very little about the difference between the two rules (&amp;ldquo;non-zero&amp;rdquo; and &amp;ldquo;even-odd&amp;rdquo;). It defers to Wikipedia to explain non-zero and even-odd.</description>
+    </item>
+    
+    <item>
+      <title>The Train</title>
+      <link>/docs/2/</link>
+      <pubDate>Tue, 18 Feb 2020 19:51:01 -0600</pubDate>
+      
+      <guid>/docs/2/</guid>
+      <description>The Train In this assignment, you&#39;ll make a train that goes around a track. We&#39;ve had students make trains since the first offering of CS559 (see the 1999 Train Assignment for historical perspective). If you&#39;re really curious about the old assignment, you can see the 2014 Train Assignment (and the fun picture of the train expert from 2008). In the past, the train was later in the semester when we were already working in 3D.</description>
+    </item>
+    
+  </channel>
+</rss>
