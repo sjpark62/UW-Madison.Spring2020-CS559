@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="generator" content="Hugo 0.65.3" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Meshes and Textures</h1>
+	</header>
+	<div class="content main__content clearfix">
+		<p>This week, we&rsquo;ll move on to making the objects that we see in 3D worlds. We&rsquo;ll learn about how we group triangles into <em>meshes</em> and use <em>texturing</em> to give them more interesting colors.</p>
+<h2 id="learning-goals">Learning Goals</h2>
+<ol>
+<li>To get some practice with mesh data structures, and see how they are used in a practical API.</li>
+<li>To see the effects of vertex and face properties including colors and normals.</li>
+<li>To practice the basic concepts of textures, especially texture coordinates.</li>
+<li>To see how texturing is implemented in a practical API.</li>
+<li>To gain some experience using shape and texture to create interesting 3D models.</li>
+</ol>
+<h2 id="required-and-recommended-readings">Required and Recommended Readings</h2>
+<p>The required material will be discussed in the online &ldquo;lectures&rdquo;. You will want to consult the THREE.JS documentation for details on how to use the API, and you may want to consult a JavaScript text to learn about JavaScript features that are important for the class software framework. The readings described are here in case you want a little more depth than we discuss in lecture, or you just need to see the material presented a different way.</p>
+<p>Required (these chapters are short, and the material is covered in the lectures):</p>
+<ul>
+<li><a href="https://canvas.wisc.edu/files/10881456/" target="_blank">Fundamentals of CG-Ch10.pdf</a> (10-10.2, 10.3 is optional)</li>
+<li><a href="https://canvas.wisc.edu/files/10881447/" target="_blank">Fundamentals of CG-Ch11.pdf</a> (11-11.3, 11.4 will be in the next workbook)</li>
+<li><a href="https://canvas.wisc.edu/files/10881457/" target="_blank">Fundamentals of CG-Ch12.pdf</a> (12, 12.1 (not 12.1.4), 12.2)</li>
+</ul>
+<h3 id="lighting">Lighting</h3>
+<p>Lighting was part of the lectures and quiz, but never mentioned in a workbook. You should read <a href="https://canvas.wisc.edu/files/10881456/" target="_blank">Fundamentals of CG-Ch10.pdf</a> - Section 10.3 is optional, but interesting.</p>
+<h3 id="basics-of-three">Basics of THREE</h3>
+<p>By now, you probably have the basics of THREE down. But the <a href="https://discoverthreejs.com/book/1-first-steps/6-shapes-transformations/">&ldquo;discover threejs tutorial&rdquo;</a> is a good way to review primitives, hierarchies and other basics. Unfortunately, its one of a very few chapters of the book that has been written.</p>
+<h3 id="meshes">Meshes</h3>
+<p>We&rsquo;ll discuss the basic concepts in class, which will be sufficient for what you need to know. Section 12.1 of Fundamentals of Computer Graphics (<a href="https://canvas.wisc.edu/files/10881457/" target="_blank">Fundamentals of CG-Ch12.pdf</a>) covers this, and then some. Sections 12, 12.1 and 12.2 cover the material for class. Section 12.1.3 covers strips and fans (which we will touch on in class, but won&rsquo;t use much). Section 12.1.4 discusses the fancy data structures used for representing meshes when they need to be manipulated - this is beyond what we will do in class - read this section to get a taste of a more advanced topic. Chapter 4 of The Big Fun Graphics Book (<a href="https://canvas.wisc.edu/files/10881407/" target="_blank">Hart-Ch4.pdf</a>) covers much of the same material.</p>
+<p>The THREE data structure we will use is the <code>Geometry</code> which is documented <a href="https://threejs.org/docs/#api/en/core/Geometry">here</a>. This also links to the <code>Face3</code> class (<a href="https://threejs.org/docs/#api/en/core/Face3">documentation</a>). These data structures are poorly documented, and there aren&rsquo;t many good examples. (Most examples use the <code>BufferGeometry</code> class that we will learn about later). Use the examples in this workbook (read the documents and the code). The design isn&rsquo;t what you might guess, but once you understand what they&rsquo;ve done it makes sense.</p>
+<h3 id="texturing">Texturing</h3>
+<p>Texturing is a big topic. We&rsquo;ll cover the basic concepts now, and return to see a lot more of the details later. Again, everything you need will be discussed in class, read a book chapter to get more details or see it explained another way. <a href="https://canvas.wisc.edu/files/10881447/" target="_blank">Fundamentals of CG-Ch11.pdf</a> covers texturing, describing it in a very general way. Section 11.1 gives the main ideas, and 11.2 gives many different types of texture - we&rsquo;ll focus on what&rsquo;s described in 11.2.2. Sections 11.2.4 (perspective correct interpolation) is an interesting detail (but the hardware takes care of it for you). 11.3 (pixel lookups) is an important topic. Section 11.4 is stuff we&rsquo;ll see next week (advanced texturing) and 11.5 is interesting but optional.</p>
+<p>The implementation of texturing we&rsquo;ll use is built into the various <code>Materials</code> in THREE. The description of how a texture is stored is discussed with the <a href="https://threejs.org/docs/#api/en/textures/Texture"><code>Texture</code></a> class. We&rsquo;ll discuss the main ideas in class, and the examples in this workbook will help you out. There are many examples of using textures with THREE around the web, however, many of them use old versions of THREE. The new versions are much more convenient (especially the <code>TextureLoader</code>). If you&rsquo;re looking for things to read, <a href="https://discoverthreejs.com/book/1-first-steps/4-textures-intro/">this Discover ThreeJS tutorial</a> shows some of the basics, but goes off into tangents about details we probably won&rsquo;t care about (like color spaces and anisotropic filtering). This <a href="http://rogerallen.github.io/webgl/2014/01/24/threejs-baby-steps/">&ldquo;ThreeJS Baby Steps&rdquo;</a> posting shows how you can do it all yourself - don&rsquo;t worry, you don&rsquo;t have to.</p>
+<h2 id="rubric-for-grading">Rubric for Grading</h2>
+<p>Note: if you score more than 100 points, we will only record 100 in Canvas - but we will remember that you scored more than the maximum.</p>
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Exercise 1 - Page 2 (15 points)</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>(2 pts) Object 1 has (at least) 3 triangles</li>
+<li>(3 pts) Object 1 has face colors</li>
+<li>(1 pt) Object 2 has (at least) 3 triangles</li>
+<li>(3 pts) Object 2 had vertex colors where we can see blending</li>
+<li>(1 pt) Object 3 has (at least) 3 triangles</li>
+<li>(3 pts) Object 3 has normals that make things look smooth</li>
+<li>(2 pts) Code Check: objects build &ldquo;manually&rdquo;</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Exercise 2 - Page 5 (15 points &#43; 2 bonus)</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>(4pts) There are 2 dice</li>
+<li>(4pts) Dice have numbers on their sides</li>
+<li>(5pts) Dice have correct numbers on their sides</li>
+<li>(2pts) The two dice show different numbers on top</li>
+<li>(2pts) Rounded edges</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Exercise 3 - Page 5 (15 points &#43; 6 bonus)</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>(5pts) At least one domino</li>
+<li>(10pts) The domino is a double 6 (correct texture)</li>
+<li>(2pts) More dominos (with different numbers)</li>
+<li>(2pts) Legal domino arrangement (at least 4 dominos)</li>
+<li>(2pts) Rounded edges</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Exercise 5 - Page 6 (25 points &#43; 7 bonus)</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>(5pts) Building Type 1</li>
+<li>(5pts) Has texture</li>
+<li>(2pts) fancy/complex texture and/or shape (building 1)</li>
+<li>(5pts) Building Type 2</li>
+<li>(5pts) Has texture</li>
+<li>(5pts) Has different roof type than 1</li>
+<li>(2pts) fancy/complex texture and/or shape (building 2)</li>
+<li>(1pts) Building Type 3</li>
+<li>(2pts) different roof type than others</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Exercise 6 - Page 7 (15 points &#43; 4 bonus)</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>(10pts) Car or Vehicle (looks like a car or other vehicle)</li>
+<li>(5pts) Has texture (or at least coloring)</li>
+<li>(2pts) fancy vehicle</li>
+<li>(2pts) more than 1 vehicle type</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+<p>Make sure you describe in the README what you did for bonus points.</p>
+<h2 id="get-started">Get Started</h2>
+<p>Everything begins on <a href="./docs/1/">Page1(Meshes: What you need to know)</a>.</p>
+
+	</div>
+    <ul>
+    
+    
+    </ul>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Meshes and Textures</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (Meshes and Textures) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: Meshes: What you need to know </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: Exercise 1: Meshes </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3: Texture Basics </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/4/">4: Textures in THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/5/">5: Dice and Dominos (Exercise 2 and 3) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/6/">6: Graphics Town Buildings (Exercise 4) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/7/">7: A Car for Graphics Town (ex 5) </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

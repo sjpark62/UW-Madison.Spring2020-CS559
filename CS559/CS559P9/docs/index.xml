@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Workbook 9: Meshes and Textures</title>
+    <link>/docs/</link>
+    <description>Recent content in Docs on Workbook 9: Meshes and Textures</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Mar 2020 13:17:00 -0500</lastBuildDate>
+    
+	<atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Meshes: What you need to know</title>
+      <link>/docs/1/</link>
+      <pubDate>Fri, 20 Mar 2020 13:16:59 -0500</pubDate>
+      
+      <guid>/docs/1/</guid>
+      <description>We discussed meshes in class. Here are the things you need to know.
+Mesh Concepts The main concepts you need to know:
+ What is a mesh (as a collection of triangles) Why we avoid &amp;ldquo;Triangle Soup&amp;rdquo; What is a good mesh  avoiding T-Junctions good triangles consistent orientations   Indexing vertices for efficiency Vertex and Face Properties The need for Vertex Sharing The need for fancy representations  You don&amp;rsquo;t need to know a fancy representation (like Winged-Edge) but you should have a sense why they are important.</description>
+    </item>
+    
+    <item>
+      <title>Exercise 1: Meshes</title>
+      <link>/docs/2/</link>
+      <pubDate>Fri, 20 Mar 2020 13:16:59 -0500</pubDate>
+      
+      <guid>/docs/2/</guid>
+      <description>In the world below (files 2-1.html and 2-1.js) make three objects and place them into the world so all can be seen.
+They can be anything. They just must have 3 or more triangles, and you have to make each one from a Geometry and put them into the 559 Framework. You can even use the objects from later parts of the assignments (pages 6 and 7) if they fullfill the requirements.</description>
+    </item>
+    
+    <item>
+      <title>Texture Basics</title>
+      <link>/docs/3/</link>
+      <pubDate>Fri, 20 Mar 2020 13:16:59 -0500</pubDate>
+      
+      <guid>/docs/3/</guid>
+      <description>This page are some notes about texturing. The notes are meant to remind you about what you&amp;rsquo;ve learned in class and point you towards resources to learn more from. This is not a texture tutorial.
+The Big Picture Texturing is a way to add details to a scene without making the geometry more complex. Effectively, it provides a way to make a decision about appearance for every pixel on the screen - without having to make triangles that are pixel-sized.</description>
+    </item>
+    
+    <item>
+      <title>Textures in THREE</title>
+      <link>/docs/4/</link>
+      <pubDate>Fri, 20 Mar 2020 13:16:59 -0500</pubDate>
+      
+      <guid>/docs/4/</guid>
+      <description>Using textures is notoriously tricky because there are a lot of steps involved. Fortunately, THREE makes it remarkably easy - it takes care of all of the little details, allowing you to focus on the big parts (setting coordinates, defining the texture image).
+If you want a sense of how much had to happen to get a cube with texture on it, have a look at the 2015 example! And this doesn&amp;rsquo;t do any lighting!</description>
+    </item>
+    
+    <item>
+      <title>Dice and Dominos (Exercise 2 and 3)</title>
+      <link>/docs/5/</link>
+      <pubDate>Fri, 20 Mar 2020 13:17:00 -0500</pubDate>
+      
+      <guid>/docs/5/</guid>
+      <description>We&amp;rsquo;ve made lots of boxes in THREE. Now we&amp;rsquo;ll turn a box into a die (one of a set of dice) and into a domino. All this means is we take a white box and put some dots on the side. For dice, we put a different number of dots on each side. For a domino, we put to sets of dots on the top.
+We&amp;rsquo;ve provided you with a simple texture with all 6 patterns of dots (1-6) in the file images/dice_texture.</description>
+    </item>
+    
+    <item>
+      <title>Graphics Town Buildings (Exercise 4)</title>
+      <link>/docs/6/</link>
+      <pubDate>Fri, 20 Mar 2020 13:17:00 -0500</pubDate>
+      
+      <guid>/docs/6/</guid>
+      <description>The pedagogical goals of this exercise are to give you practice defining shapes with meshes and adding textures to them.
+In the coming weeks, you will make Graphics Town. To start, in this exercise you will make a few kinds of buildings to put into your town. Over the next weeks, you&amp;rsquo;ll make more stuff to go into the town.
+For this assignment, you need to make at least two different kinds of buildings.</description>
+    </item>
+    
+    <item>
+      <title>A Car for Graphics Town (ex 5)</title>
+      <link>/docs/7/</link>
+      <pubDate>Fri, 20 Mar 2020 13:17:00 -0500</pubDate>
+      
+      <guid>/docs/7/</guid>
+      <description>The pedagogical goals of this exercise are to give you practice defining shapes with meshes and adding textures to them.
+In graphics town, you will need vehicles. A cars, trucks, trains, or maybe other things.
+So in this page, please make one. It has to have wheels on the ground. But other than that, few restrictions - you can have a primitive (like a box or something) for the body. The vehicle must either have shape or texture to make it look like a car/truck/train.</description>
+    </item>
+    
+  </channel>
+</rss>

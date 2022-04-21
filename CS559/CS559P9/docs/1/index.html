@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Meshes: What you need to know</h1>
+		</header>
+		<div class="content post__content clearfix">
+			<p>We discussed meshes in class. Here are the things you need to know.</p>
+<h2 id="mesh-concepts">Mesh Concepts</h2>
+<p>The main concepts you need to know:</p>
+<ul>
+<li>What is a mesh (as a collection of triangles)</li>
+<li>Why we avoid &ldquo;Triangle Soup&rdquo;</li>
+<li>What is a good mesh
+<ul>
+<li>avoiding T-Junctions</li>
+<li>good triangles</li>
+<li>consistent orientations</li>
+</ul>
+</li>
+<li>Indexing vertices for efficiency</li>
+<li>Vertex and Face Properties</li>
+<li>The need for Vertex Sharing</li>
+<li>The need for fancy representations
+<ul>
+<li>You don&rsquo;t need to know a fancy representation (like Winged-Edge) but you should have a sense why they are important.</li>
+</ul>
+</li>
+<li>Efficiency tricks (strips and fans)
+<ul>
+<li>We&rsquo;ll only touch on these briefly</li>
+</ul>
+</li>
+</ul>
+<h2 id="meshes-in-threejs">Meshes in THREE.js</h2>
+<p>Confusingly, THREE.js uses the term <a href="https://threejs.org/docs/#api/en/core/Geometry">Geometry</a> to mean a collection of triangles, and uses the term <a href="https://threejs.org/docs/#api/en/objects/Mesh">Mesh</a> to mean a Geometry (collection of triangles) that has a material associated with it, and all of the other stuff that a &ldquo;Graphics Object&rdquo; has (e.g., transformations and hierarchy). A THREE <code>Mesh</code> &ldquo;has-a&rdquo; <code>Geometry</code>, but a <code>Geometry</code> is the collection of triangles that is more like the common graphics usage of the term.</p>
+<p>Three has two types of Geometry. The regular <code>Geometry</code> class and the <code>BufferGeometry</code> class. We can&rsquo;t really talk about <code>BufferGeometry</code> until we learn about buffers, so we&rsquo;ll use regular old <code>Geometry</code> for now. A warning: most examples in THREE use <code>BufferGeometry</code>, so it can be hard to find good examples. The examples in this workbook should be good enough to help you get started.</p>
+<p><code>Geometry</code> stores a Mesh as vertex-indexed set of faces (where the faces are triangles). The <code>Geometry</code> class <a href="https://threejs.org/docs/#api/en/core/Geometry">(documentation)</a> stores a list of vertices (as <code>Vector3</code> positions). It also stores a list of Faces (as <a href="https://threejs.org/docs/#api/en/core/Face3"><code>Face3</code></a>). Each face, refers to 3 vertices (by their index in the vertex array).</p>
+<p>Faces have properties you would expect - like a color and a normal. However, they also contain properties of the vertices (colors and normals). This allows for &ldquo;vertex splitting&rdquo; (the same vertex can have different properties for different faces). Vertices don&rsquo;t have properties like color or normals by themselves (only inside of faces). To make things more confusing, texture coordinates (which are properties of vertices that are split like colors and normals) are stored in a completely different manner.</p>
+<p>THREE has materials specifically designed to work with meshes. If you want materials such as <code>MeshStandardMaterial</code> to use vertex or face colors, you need to tell it to do so. As far as I can tell, if you tell <code>MeshStandardMaterial</code> that you want to use vertex colors, but you provide face colors instead, that&rsquo;s OK. Vertex colors override face colors (if you are in vertex color mode).</p>
+<p>For normals, you can provide a normal for either the face or for each vertex on the face. THREE has a way to automatically compute the face normals (so they are normal to the triangle).</p>
+<h2 id="example-mesh-colors">Example: Mesh Colors</h2>
+<p>In this example, we&rsquo;ve made a Mesh (<code>Geometry</code>) with two triangles. For the first one, it uses the material color (yellow). For the second one, we&rsquo;ve given it face colors. For the third, we&rsquo;re using vertex colors.</p>
+<iframe src="../../for_students/1-1.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<p>Be sure to read the code in <a href="../../for_students/1-1.js" class="for_students">1-1.js</a> and understand how the meshes are put together.</p>
+<h2 id="example-mesh-normals">Example: Mesh Normals</h2>
+<p>This example uses the same two triangles. Except that this time, the normals are done differently for each of the 3 versions. On the left, THREE computes the normals for us (see the line <code>geometry.computeFaceNormals();</code>). In the middle one, we assign each vertex on each face a normal value. This is the same normal that would have been computed for each triangle. The triangle on the right has the vertices in the middle (along the edge between the two triangles) pointing forward - to give the same normals as if it were a smooth, curved piece (rather than two triangles with a crease). Because the lights are on the sides, the middle of this object is dark. But, as you move it, notice the lighting behaves as if this were a curved object.</p>
+<iframe src="../../for_students/1-2.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<p>Be sure to read the code in <a href="../../for_students/1-2.js" class="for_students">1-2.js</a> and understand how the meshes are put together.</p>
+<h2 id="summary-meshes">Summary: Meshes</h2>
+<p>This is a reminder of what we learned about Meshes, and an example of how to make a very simple one (with two triangles). On <a href="../../docs/2/">Page2(Exercise 1: Meshes)</a>, you&rsquo;ll get to try to make a more interesting mesh.</p>
+
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 9: Meshes and Textures</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Meshes and Textures)</a></li>
+        <li class="Side__Item Side__Selected"> 1: Meshes: What you need to know </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Exercise 1: Meshes </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Texture Basics </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Textures in THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Dice and Dominos (Exercise 2 and 3) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Graphics Town Buildings (Exercise 4) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: A Car for Graphics Town (ex 5) </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

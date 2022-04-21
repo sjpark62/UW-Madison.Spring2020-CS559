@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Aliasing</h1>
+		</header>
+		<div class="content post__content clearfix">
+			<h2 id="box-1-one-way-to-fix-aliasing">Box 1: One Way to Fix Aliasing</h2>
+<p>If you look at the dots on the previous page (repeated below), you&rsquo;ll notice that you can see the pixel boundaries on the texture. Since something either is part of a dot or not, each pixel matters. As the dots get small, this can be ugly. This causes the jagged edges (called &ldquo;jaggies&rdquo; - yes, that&rsquo;s a technical term).</p>
+<p>The problem is that we are making the pixels either light or dark - nothing in between. Even if a pixel is half full of a dot, it has to be either light or dark.</p>
+<p>A different way to look at it: for each pixel, we compute the color at the center and make the entire pixel be that color. Since that point is either inside or outside of the dot, we choose a color for a pixel.</p>
+<p>Here is an example in <a href="../../for_students/6-1.js" class="for_students">6-1.js</a> (<a href="../../for_students/6-1.html" class="for_students">6-1.html</a>)</p>
+<iframe src="../../for_students/6-1.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<p>An answer to this is to make the cutoff for inside/outside less severe. We can &ldquo;blur&rdquo; the dots - making the boundary fuzzy. The transition between inside and outside can be gradual. That way a pixel can be correctly on the boundary. If you select &ldquo;large blur&rdquo; you can see that in action. Notice that things look blurry, but the shapes are smooth (not jaggy).</p>
+<p>To make implement things like this easier, we use a common GLSL idiom. On the previous page, we used <code>step</code> to cause the variable that measures whether we are &ldquo;inside the dot&rdquo; to switch from 0 to 1 as the distance to the dot center gets to be bigger than the radius. Here, we change that to use the <code>smoothstep</code> function which gradually transitions from 0 to 1 over a range centered at the threshold. The width of this range is the &ldquo;blurriness&rdquo;. Since we are using the <code>mix</code> function, if we are in the transition zone, we get a blend of the colors.</p>
+<p>Can we have both sharp edges and no jaggies? Try &ldquo;correct anti-aliasing&rdquo; and see what is the best we can do easily. We&rsquo;re still blurring the edge, we&rsquo;re just making the blurriness be one pixel in width (rather than fixed in UV space). GLSL has support to help us do that. Basically, you take the derivative of <code>u</code> and <code>v</code> with respect to screen coordinates to see how much they change. This is a slightly advanced topic - but it is really important for making nice looking texturing.</p>
+<p>Note that this is exactly the same problem as trying to figure out what level of the mip-map to look up when we filter image-based textures.</p>
+<h2 id="box-2-exercise-3-anti-aliased-checkerboard">Box 2: Exercise 3, Anti-Aliased Checkerboard</h2>
+<p>This is a harder exercise. Make a version of your checkerboard shader that is anti-aliased!</p>
+<p>You can figure out how to do it from the dots example on this page. The starting code can be found in <a href="../../for_students/6-2.js" class="for_students">6-2.js</a> (<a href="../../for_students/6-2.html" class="for_students">6-2.html</a>) and the shaders are in <a href="../../for_students/shaders/6-2.vs" class="for_students">shaders/6-2.vs</a> and <a href="../../for_students/shaders/6-2.fs" class="for_students">shaders/6-2.fs</a>. A hint: make a non-anti-aliased checkerboard using <code>step</code> and <code>mix</code> to switch between the colors. Then switching to <code>smoothstep</code> will be easy.</p>
+<p>You should not load an image and use a texture map - which is easy to anti-alias with mip-map filtering. For this exercise, write a procedural shader.</p>
+<iframe src="../../for_students/6-2.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<h2 id="summary-anti-aliasing">Summary: Anti-Aliasing</h2>
+<p>If you get jaggy looking textures, you need to do something about it. This is called &ldquo;anti-aliasing&rdquo;.</p>
+<p>For now we&rsquo;ll move on to <a href="../../docs/7/" class="Next__Page">Next: Using Textures </a> and learn about how to use images in textures.</p>
+
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">CS559 Workbook 11: Shaders</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (Shaders)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: Shader Basics </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Simple Shaders </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: GLSL and THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Lighting in Shaders </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Procedural Textures </a></li>
+        <li class="Side__Item Side__Selected"> 6: Aliasing </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Using Textures </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: All Together </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/9/">9: Shader Tools and Examples </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

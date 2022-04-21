@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shaders on CS559 Workbook 11: Shaders</title>
+    <link>/</link>
+    <description>Recent content in Shaders on CS559 Workbook 11: Shaders</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Apr 2020 09:58:44 -0500</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shader Basics</title>
+      <link>/docs/1/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:44 -0500</pubDate>
+      
+      <guid>/docs/1/</guid>
+      <description>We will discuss shaders thoroughly in class. This is meant as a reminder (or maybe a cue to review the lecture notes, or ask a question in class if there is something you don&amp;rsquo;t understand). It should also serve as a modest tutorial to review the concepts.
+Learning about Shaders There are at least 4 different things that you have to understand in order to really use shaders effectively.
+ The basic concepts of what shaders are, and why they are the way they are.</description>
+    </item>
+    
+    <item>
+      <title>Simple Shaders</title>
+      <link>/docs/2/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:44 -0500</pubDate>
+      
+      <guid>/docs/2/</guid>
+      <description>Now that we know what shaders are, let&amp;rsquo;s look at some simple ones!
+There are two things that go beyond theory here: (1) the shaders are written in a specific shader language (GLSL), and (2) there are the details of how we set them up and pass information to them from our &amp;ldquo;host program&amp;rdquo; (the JavaScript program we write). Fortunately, THREE.js will take care of #2, but that means we need to learn about its quirks.</description>
+    </item>
+    
+    <item>
+      <title>GLSL and THREE</title>
+      <link>/docs/3/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:44 -0500</pubDate>
+      
+      <guid>/docs/3/</guid>
+      <description>Part of writing shaders is that you have to work in a shading language, which is yet another programming language to learn. What is challenging for most students is the concept of shaders, the details of the language follow. In fact, in old assignments we used to make students translate shaders from one language to another to emphasize that the languages aren&amp;rsquo;t that different.
+GLSL is convenient: it is one shading language that works almost everywhere, and the compiler is built into the graphics drivers.</description>
+    </item>
+    
+    <item>
+      <title>Lighting in Shaders</title>
+      <link>/docs/4/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:45 -0500</pubDate>
+      
+      <guid>/docs/4/</guid>
+      <description>The first thing we usually need to do in a shader is compute lighting. The simple shaders from page 2 didn&amp;rsquo;t have lighting (so all sides of the cube looked the same).
+We discussed the equations for a simple lighting model (Phong) in class. You can find the shader code for this all over the web and even in some of the required readings.
+If you recall, in order to compute lighting at a point, we need to know:</description>
+    </item>
+    
+    <item>
+      <title>Procedural Textures</title>
+      <link>/docs/5/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:45 -0500</pubDate>
+      
+      <guid>/docs/5/</guid>
+      <description>Box 1: The XYZ Texture The idea of a texture is that we will compute a different color for each pixel. Since we can run a fragment shader on each pixel, we can do this.
+As with image-based textures, we need to have a good coordinate system. We can use the UV coordinates, or anything else.
+Here are two examples: for one, I&amp;rsquo;ll use the world space XYZ as the texture coordinates, and for the second I&amp;rsquo;ll use the object space XYZ as the texture coordinates.</description>
+    </item>
+    
+    <item>
+      <title>Aliasing</title>
+      <link>/docs/6/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:45 -0500</pubDate>
+      
+      <guid>/docs/6/</guid>
+      <description>Box 1: One Way to Fix Aliasing If you look at the dots on the previous page (repeated below), you&amp;rsquo;ll notice that you can see the pixel boundaries on the texture. Since something either is part of a dot or not, each pixel matters. As the dots get small, this can be ugly. This causes the jagged edges (called &amp;ldquo;jaggies&amp;rdquo; - yes, that&amp;rsquo;s a technical term).
+The problem is that we are making the pixels either light or dark - nothing in between.</description>
+    </item>
+    
+    <item>
+      <title>Using Textures</title>
+      <link>/docs/7/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:45 -0500</pubDate>
+      
+      <guid>/docs/7/</guid>
+      <description>Box 1: Image-Based Textures and Shaders Shaders can look up values (usually colors) in images. This is how we implement traditional texture mapping.
+First, we need to put the image file into a uniform variable. More specifically, we don&amp;rsquo;t only need an image, but also all the machinery that can read values from it. For example, we might use a mip-map. The GLSL data type is called a sampler2D.
+Setting up a sampler2D from the host side is complicated.</description>
+    </item>
+    
+    <item>
+      <title>All Together</title>
+      <link>/docs/8/</link>
+      <pubDate>Fri, 10 Apr 2020 09:58:45 -0500</pubDate>
+      
+      <guid>/docs/8/</guid>
+      <description>On this page there are 3 exercises: you need to write a shader for each one.
+Exercises 1 and 2 require some lighting, and 3 recommends it. For the purposes of these exercises, you can assume that the lights are in &amp;ldquo;camera coordinates&amp;rdquo;. If you do diffuse lighting, the lighting will change as the camera moves (because the lights move with the camera). It is sufficient to create a single directional light either in the camera direction (0,0,1 in view coordinates), or from above the camera (0,1,0 in view coordinates).</description>
+    </item>
+    
+    <item>
+      <title>Shader Tools and Examples</title>
+      <link>/docs/9/</link>
+      <pubDate>Sat, 11 Apr 2020 10:20:26 -0500</pubDate>
+      
+      <guid>/docs/9/</guid>
+      <description>Back on Page3(GLSL and THREE), we talked about tools for developing shaders. Here, we&amp;rsquo;ll talk about them a little more.
+One of the nice things about many of the shader tools (especially the web-based ones) is that they provide nice galleries of examples (often contributed by users). Some example galleries are:
+ GLSL Sandbox ShaderToy The Book of Shaders CentiScript ShaderFrog  For many of them (everything on the list above except ShaderFrog), the focus is on fragment shaders - the idea is that you always apply the fragment shader to every pixel in the image (effectively, the scene is one big rectangle).</description>
+    </item>
+    
+  </channel>
+</rss>

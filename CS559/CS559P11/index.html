@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="generator" content="Hugo 0.65.3" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Shaders</h1>
+	</header>
+	<div class="content main__content clearfix">
+		<p>This week, we&rsquo;ll learn to program the graphics hardware. In many classes, you have to start with this, since you can&rsquo;t draw a triangle without writing two programs. So far, we&rsquo;ve let THREE.js program the graphics hardware for us. Now we&rsquo;re learning what it is doing.</p>
+<h2 id="learning-goals">Learning Goals</h2>
+<p>Students should learn to:</p>
+<ol>
+<li>Understand the basic organization of graphics hardware, and how programmability fits into it.</li>
+<li>Appreciate why shaders are the ways that they are and what you can do with them.</li>
+<li>Understand how the shader programming paradigm leads to specific, real implementations.</li>
+<li>Be able to write shaders in a real shading language.</li>
+<li>See how shaders are managed and integrated into a graphics application.</li>
+</ol>
+<p>In one week, you won&rsquo;t master shader programming. But you will get to read and write some actual shader programs. This means that you not only have to learn the concepts, but you&rsquo;ll need to work with a new programming langauge (we&rsquo;ll use GLSL).</p>
+<p><strong>Note that for class:</strong></p>
+<ol>
+<li>You must write some shaders. For this, you need to understand the basic concepts, and a little bit of the GLSL language.</li>
+<li>You must understand shaders (for the exam). We won&rsquo;t test you on GLSL details, but you will need to know the key concepts and be able to read shader code.</li>
+</ol>
+<h2 id="recommended-and-required-readings">Recommended and Required Readings</h2>
+<p>Unfortunately, we don&rsquo;t have a great tutorial on how to write shaders. Things tend to spend too much time on the issues in connecting shaders to real programs (which is generally taken care of by a higher level API, such as THREE).</p>
+<p>Be aware that many resources talk about using GLSL with OpenGL. The version of GLSL used in WebGL (OpenGL ES) is slightly different than the &ldquo;real&rdquo; OpenGL GLSL. In particular, WebGL only supports GLSL-ES version 3 (not 3.2). Check the <a href="https://www.khronos.org/files/webgl20-reference-guide.pdf" target="_blank">WebGL Reference Card</a> to see what is supported. The GLSL ES shading language (used in WebGL) is a subset of regular OpenGL GLSL. Generally, things just work, but sometimes, things are missing.</p>
+<p>Also, A lot of the resources for GLSL with OpenGL talk about the interface between C++ and GLSL which is quite complicated. In WebGL, the JavaScript to GLSL interface is actually somewhat better. But for class, we will let THREE.js take care of it for us.</p>
+<p>There are three different types of readings:</p>
+<ol>
+<li>
+<p><strong>Required Readings</strong> - to give you the basic idea of what&rsquo;s going on with how the hardware works and how GLSL lets you write Shaders. <a href="https://canvas.wisc.edu/files/12330187" target="_blank">Chapter 2</a> and <a href="https://canvas.wisc.edu/files/12330186" target="_blank">Chapter 3</a> of <a href="https://amzn.to/2x9wtyF" target="_blank">The OpenGL Shading Language (3e)</a> covers the basics and gives you enough to get started. We&rsquo;ll suggest some others below.</p>
+</li>
+<li>
+<p><strong>Reference Readings</strong> - when you are programming, you will want something that shows you the details. The <a href="https://www.khronos.org/files/webgl20-reference-guide.pdf" target="_blank">WebGL Reference Card</a> has what you need in a concise from on pages 6-8. There are more thorough references below.</p>
+</li>
+<li>
+<p><strong>Supplementary Readings</strong> - a good way to learn is by looking at examples, and seeing how people do cool things. We&rsquo;ll suggest some good places to get started (including the examples in the workbook).</p>
+</li>
+</ol>
+<p>The &ldquo;official&rdquo; documentation for GLSL is <a href="https://amzn.to/2x9wtyF" target="_blank">The OpenGL Shading Language (3e)</a> (also known as the orange book). The book is a bit old (2009), and it is about OpenGL GLSL and not WebGL. But its still a great resource. <a href="https://canvas.wisc.edu/files/12330188" target="_blank">Chapter 1</a> gives an overview of the graphics programming model (OpenGL in general). <a href="https://canvas.wisc.edu/files/12330187" target="_blank">Chapter 2</a> and <a href="https://canvas.wisc.edu/files/12330186" target="_blank">Chapter 3</a> give a nice introduction to shading and the GLSL language. <a href="https://canvas.wisc.edu/files/12330185" target="_blank">Chapter 4</a> reviews the types of variables (which is something that confuses most people), <a href="https://canvas.wisc.edu/files/12330184" target="_blank">Chapter 5</a> is a reference for different functions that are available (kindof like the standard library), and <a href="https://canvas.wisc.edu/files/12330181" target="_blank">Chapter 6</a> gives a complete example in thorough detail.</p>
+<p>The UW library has 2 ebooks available for your to read online. &ldquo;GLSL Essentials&rdquo; is available from the <a href="https://search.library.wisc.edu/catalog/9912150691002121">UW library</a>. At a glance, I am not sure it adds much - it does give more examples and explanations. Similarly, the <a href="https://search.library.wisc.edu/catalog/9911069619502121">OpenGL4 Shading Language Cookbook</a> talks a lot about how C++  and GLSL communicates, but also works through some good examples.</p>
+<h4 id="shading-and-glsl-basics">Shading and GLSL Basics</h4>
+<p>You will get the basic ideas of how the graphics hardware works and why shading langauges work the way they do from lectures. Be sure you understand the lectures on the graphics pipeline - otherwise the concepts of shaders will not make sense. The lectures on Shaders (especially the introductory parts) will give you an overview.</p>
+<p><a href="https://canvas.wisc.edu/files/12330187" target="_blank">Chapter 2</a> and <a href="https://canvas.wisc.edu/files/12330186" target="_blank">Chapter 3</a> of <a href="https://amzn.to/2x9wtyF" target="_blank">The OpenGL Shading Language (3e)</a> are <strong>required.</strong> They introduce the concepts of shading and the GLSL language, with only a minor amount of irrelevant stuff on the C++ interface.</p>
+<p>Chapter 17 of Fundamentals of Computer Graphics <a href="https://canvas.wisc.edu/files/10881460/" target="_blank">Fundamentals of CG-Ch17.pdf</a> provides a nice introduction if you want to see things described in another way. It talks a lot about how we get data to the shaders, which is important for performance.</p>
+<h4 id="glsl-reference">GLSL Reference</h4>
+<p>As you start to program in GLSL (or even read programs), you will want to have some resources about the details of the language and the functions you can use.</p>
+<p>The <a href="https://www.khronos.org/files/webgl20-reference-guide.pdf" target="_blank">WebGL Reference Card</a> has a concise reference for the version of GLSL used by WebGL on pages 6-8. It is amazingly handy as a resource (although less useful to learn from).</p>
+<p><a href="https://canvas.wisc.edu/files/12330184" target="_blank">OpenGL Shading Language (3e) Chapter 5</a> has a more descriptive list of all the functions available in GLSL (kindof like its standard library).</p>
+<p>Shaderific has a <a href="http://www.shaderific.com/glsl/">GLSL reference</a>. It&rsquo;s less terse than the reference card, but it still is just a reference once you have a basic idea of what you&rsquo;re doing. It has a paragraph or so about all the functions (that are just listed on the reference card).</p>
+<p>The official GLSL specification is available <a href="https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf">here</a>. It&rsquo;s mainly for language lawyers, but it can help you find out what are all the variable types or built in functions. It is for &ldquo;OpenGL&rdquo; - WebGL&rsquo;s version of GLSL is a subset.</p>
+<h4 id="examples">Examples</h4>
+<p>A great wat to learn how to use shading (once you&rsquo;ve gotten the basics) is to look at examples. This will also give you good ideas on what kinds of things you can do.</p>
+<p><a href="https://canvas.wisc.edu/files/12330181" target="_blank">OpenGL Shading Language (3e) Chapter 6</a> works through a simple example of a shader to make something that looks like bricks (this is an example of a procedural texture, that we&rsquo;ll discuss on <a href="./docs/5/">Page5(Procedural Textures)</a>).</p>
+<p><a href="https://thebookofshaders.com/">The Book of Shaders</a> promises a &ldquo;a gentle step-by-step guide through the abstract and complex universe of Fragment Shaders&rdquo;. It&rsquo;s oriented more towards artists, and it only covers fragment shaders. But that&rsquo;s our focus, and the art aspects are fun, because the authors create cool things with it. It&rsquo;s a little tricky to apply directly (since all of the examples are designed to run stand alone in the browser using his framework), but not that tricky because things are simplified (it&rsquo;s only fragment shaders, so the examples expect less than other documents). The book also tries to do all computer graphics in a fragment shader - which leads to interesting examples, but not necessarily practical ones.</p>
+<p>Another resource are the examples of shaders available around the web. We&rsquo;ll encourage you to look for those later.</p>
+<h2 id="exercises">Exercises</h2>
+<p>Pages 5, 6, 8 and 9 have required exercises on them. Each require you to write shaders.</p>
+<h3 id="rubric-for-grading">Rubric for Grading</h3>
+<ul>
+<li>Exercise 1 (Box 5-3)
+<ul>
+<li>looks like a checkerboard (10)</li>
+<li>responds to slider (5)</li>
+</ul>
+</li>
+<li>Exercise 2 (Box 5-4)
+<ul>
+<li>some other pattern (10)</li>
+</ul>
+</li>
+<li>Exercise 3 (Box 6-2)
+<ul>
+<li>non-jaggy checkerboard (5)</li>
+</ul>
+</li>
+<li>Exercise 4 (Box 8-1)
+<ul>
+<li>has a procedural pattern (8)</li>
+<li>has lighting (7)</li>
+<li>uses THREE lighting (3)</li>
+</ul>
+</li>
+<li>Exercise 5 (Box 8-2)
+<ul>
+<li>has an image-based texture (8)</li>
+<li>has lighting (7)</li>
+<li>uses THREE lighting (3)</li>
+<li>does something besides just light texture (2)</li>
+</ul>
+</li>
+<li>Exercise 6 (Box 8-3)
+<ul>
+<li>Some shader that is different than what is in other boxes (10)</li>
+</ul>
+</li>
+<li>Exercise 7 (Box 9-1)
+<ul>
+<li>has some example (10)</li>
+<li>gives attribution (3)</li>
+<li>gives an explanation (8)</li>
+</ul>
+</li>
+</ul>
+<h2 id="get-started">Get Started</h2>
+<p>Everything begins on <a href="./docs/1/">Page1(Shader Basics)</a>!</p>
+
+	</div>
+    <ul>
+    
+    
+    </ul>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">CS559 Workbook 11: Shaders</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (Shaders) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: Shader Basics </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: Simple Shaders </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3: GLSL and THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/4/">4: Lighting in Shaders </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/5/">5: Procedural Textures </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/6/">6: Aliasing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/7/">7: Using Textures </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/8/">8: All Together </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/9/">9: Shader Tools and Examples </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="generator" content="Hugo 0.65.3" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">Fancier Textures and Lighting</h1>
+	</header>
+	<div class="content main__content clearfix">
+		<p>This week we&rsquo;ll do some more texturing, trying out fancier versions of texturing and seeing how this works with lighting.</p>
+<h2 id="learning-goals">Learning Goals</h2>
+<ol>
+<li>To learn about how local lighting is computed, and see how it is used in a practical system.</li>
+<li>To learn about types of texturing beyond color maps, and see how they are used.</li>
+<li>To see how lighting and texturing is used in a practical graphics system.</li>
+<li>To try using various lighting and texturing features to create appearances.</li>
+<li>To gain some experience using THREE.js and the class software framework.</li>
+</ol>
+<p>THREE makes fancy texture mapping very easy. A lot of things that are hard to program are built in and made quite convenient. Most of the important kinds of texture mapping we need to do are built in to THREE (usually in the materials). Using them is suprisingly easy.  This is good news if you want to use advanced texturing - you don&rsquo;t need to understand the details of how it works,  the implementors of THREE figured it out for you. And they gave you a nice implementation that is relatively easy to use. Even better they all work together: you can use a physically-based material with a texture map, environment map, property map, shadow map, and bump map (and maybe even more features) just by specifying the parameters!</p>
+<p>This is a slight problem for class: we have no way to know if you are really understanding how these different things work. So, we&rsquo;re basically going to trust you. Watch the lecture videos, read the readings, experiment with different parameters, shapes and maps. And be thankful that you don&rsquo;t actually have to code up the math for each of these methods.</p>
+<h2 id="recommended-and-required-readings">Recommended and Required Readings</h2>
+<p>The main source of the material in this workbook are the lectures (videos). The most relevant videos are <a href="https://graphics.cs.wisc.edu/Courses/559-sp2020/posts/lecture19/">Lecture 19/20</a>. The <a href="https://cs559.github.io/S20-FrameworkDemos/">demos</a> pretty much do the main parts of the assignment, although the code was not necessarily designed to be easy to read. Please make more interesting examples.</p>
+<p>You will undoubtedly need to look at the THREE.js documentation. You may also want to look at the <a href="https://cs559.github.io/CS559-Framework/">framework code documentation</a>. The documentation is generated from the comments in the code, so you can probably just get by with reading the code.</p>
+<p>Chapters 10 and 11 of Fundamentals of Computer Graphics are required reading. Both of these have been readings in prior workbooks.</p>
+<p><a href="https://canvas.wisc.edu/files/10881456/" target="_blank">Fundamentals of CG-Ch10.pdf</a> has a concise and complete discussion of basic lighting. It is a great way to review what we discuss in class. Section 10.3 (Artistic Shading) is a more advanced topic. While lighting is not directly part of the exercises of the workbook, it is a topic that you will need to understand (both for programming and for the exams). We will also do more with it in coming weeks.</p>
+<p><a href="https://canvas.wisc.edu/files/10881447/" target="_blank">Fundamentals of CG-Ch11.pdf</a> was a reading for last week. Sections 11.1 and 11.2 cover the basics of texture mapping. Section 11.3 discusses the filtering issues (as we talked about in class), including mip mapping and anisotropy. Section 11.4 talks (briefly) about the advanced texturing concepts in the exercises of this workbook.</p>
+<p>Optional: <a href="https://canvas.wisc.edu/files/10881506/" target="_blank">RTR4_Ch06.pdf</a> has more details about texturing than you probably want to know. It will tell you about many different kinds of mapping, lots of different algorithms for each different problems, and lots of pictures of how these things can be used in practice. It&rsquo;s fun to look at the pictures and be inspired about what kinds of cool stuff can be done.</p>
+<p>Optional: <a href="https://canvas.wisc.edu/files/10881449/" target="_blank">RTR4_Ch07.pdf</a> is a whole chapter on shadows. We&rsquo;ll only talk about Shadow Maps (Section 7.4). Even with Shadow Maps, the RTR book will give you more details than you could imagine, and tell you some things that they&rsquo;ve done in recent games.</p>
+<h2 id="exercises">Exercises</h2>
+<p>The requirements for this workbook are relatively easy. On most pages, we simply ask you to use a particular kind of texture. In most cases, this requires you to pick some object, pick some texture, and write a very minimal amount of code to attach the two. We encourage you to experiment: see how the parameters change things, try different kinds of images for your textures, etc. But we can&rsquo;t really check that you&rsquo;ve done this. The requirements are pretty minimal.</p>
+<p>It is your responsibility to make sure that your scene shows off the texturing feature that it is supposed to. For example, if you are showing off the use of environment maps to simulate reflections, make sure that you have a shiny object that reflects things (and an environment map that give something to be seen in the reflections). You may want to make your objects move in order to show off some of the lighting effects, or choose object views that make things clear (for example, in lecture I showed off when bump mapping becomes invisible). If you think that its not clear that you are using the required effect, you may want to describe (in the html text below the exercise and/or your README) what we should be seeing and why it shows off the feature.</p>
+<p>You will need to find/create your own texture maps. Over the course of the assignment, you will need a bunch of texture maps. Over the whole assignment you must use each of these creation methods at least once:</p>
+<ol>
+<li>A texture you made yourself by painting (digital painting, using a painting program/photo editor)</li>
+<li>A texture that you got from the web (document where you found it, and confirm that it is free to use)</li>
+<li>A texture that is a photograph (that you took) of a real object</li>
+</ol>
+<p>In your README, be sure to document that you have at least one of each of these. 
+In order to do all of these, you might need to put an extra object in one of your scenes.</p>
+<p>Don&rsquo;t forget to include the textures you use in your repo and push them to GitHub!</p>
+<p>It is OK to re-use code between exercises. You could potentially make one scene that does everything (and just load the same code onto each page). For each page, it should be clear which objects in the scene.</p>
+<p>If you want to load in objects from OBJ or FBX files, that is OK (but optional). Make sure to include the objects in your repo, and document where you got them from in your README. You probably want to use the loader code built in the framework. Please choose objects that have appropriate licensing and be sure to give proper attribution in your README file.</p>
+<h2 id="rubric-for-grading">Rubric for Grading</h2>
+<p>The requirements are pretty straightforward. You really only need to add a few lines on top of things you already know how to do. And if you&rsquo;re stuck, you can peek at the <a href="https://cs559.github.io/S20-FrameworkDemos/">demos</a>.</p>
+<p>Assessing effort beyond the minimum is difficult for the graders: it&rsquo;s too subjective, and not necessarily a measure of your learning about graphics. For example, you might make a really cool scene just because you picked an nice environment map background from <a href="https://hdrihaven.com/">HDRI Haven</a>; in fact, that might look nicer than a simple one someone made themself. Therefore, there are no bonus point opportunities in this assignment (although, the total points add up to a high AB, not just AB). There will be more in the last two workbooks.</p>
+
+
+
+<div class="book-expand">
+  <label>
+    <div class="book-expand-head flex justify-between">
+      <span class="expand__button">Expand</span>
+      <span>↕</span>
+    </div>
+    <input type="checkbox" style="display: none" />
+    <div class="book-expand-content markdown-inner">
+      <ul>
+<li>Overall (20pts)
+<ul>
+<li>(5pts) seems to have proper attributions in the readme</li>
+<li>(5pts) (at least one) texture you made by painting (described in the readme)</li>
+<li>(5pts) (at least one) texture you found on the web (described in readme with proper attribution)</li>
+<li>(5pts) (at least one) a texture you made by taking a picture (described in the readme)</li>
+</ul>
+</li>
+<li><a href="./docs/2/">Page2(Exercise 1: Material Property Maps)</a> - Using Material Property Maps (10pts)
+<ul>
+<li>(5pts) an appropriate scene (objects, lighting, …)</li>
+<li>(5pts) clear use of mat prop map</li>
+</ul>
+</li>
+<li><a href="./docs/3/">Page3(Exercise 2: Bump and Normal Maps)</a> - Using Bump and Normal Maps (10pts)
+<ul>
+<li>(2pts) readme specifies which is normal map and which is bump map</li>
+<li>(1pts) appropriate scene (objects and lighting)</li>
+<li>(2pts) bump map object looks &ldquo;bump mappy&rdquo;</li>
+<li>(1pts) confirm bump map is a bump map (1 channel)</li>
+<li>(2pts) normal map object looks &ldquo;normal mappy&rdquo;</li>
+<li>(2pts) confirm normal map is a normal map (3 channels)</li>
+</ul>
+</li>
+<li><a href="./docs/4/">Page4(Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE))</a> - Using a Sky Box (10pts)
+<ul>
+<li>(5pts) both 4-1 and 4-2 look like a skybox</li>
+<li>(5pts) 4-1 is a fake sky box (get close to edge)</li>
+</ul>
+</li>
+<li><a href="./docs/5/">Page5(Exercise 4: Environment Maps)</a> - Using an Environment Map (10pts)
+<ul>
+<li>(10pts) there is a reflective object in the scene that shows the skybox</li>
+</ul>
+</li>
+<li><a href="./docs/6/">Page6(Exercise 5: Shadow Maps)</a> - Using Shadow Maps (10pts)
+<ul>
+<li>(5pts) there are shadows</li>
+<li>(5pts) there are shadows of one object onto another object</li>
+</ul>
+</li>
+<li><a href="./docs/7/">Page7(Multi-Pass Rendering)</a> - Using Dynamic Texture Maps (10pts)
+<ul>
+<li>(5pts) there is an object reflecting the environment</li>
+<li>(10pts) the reflections show the scene (not just the background)</li>
+<li>(3pts) you can see moving objects in the reflection</li>
+</ul>
+</li>
+</ul>
+    </div>
+  </label>
+</div>
+
+<h2 id="document-the-assignments-well">Document the assignments well</h2>
+<p>In this workbook, the assignments are more open ended.
+For this reason, it is important that you document well what you did.
+Please do this in the readme file.</p>
+<p>In particular, be sure to say where you get your textures from. It&rsquo;s OK to get them from the web - as long as they are freely available, and you give proper attribution. If you painted them yourself, say so. We&rsquo;d prefer to know how (what program did you use?).</p>
+<h2 id="get-started">Get Started</h2>
+<p>Everything begins on <a href="./docs/1/">Page1(Fancy Texturing)</a>.</p>
+
+	</div>
+    <ul>
+    
+    
+    </ul>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 10: Fancier Textures and Lighting</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (Fancier Textures and Lighting) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: Fancy Texturing </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: Exercise 1: Material Property Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3: Exercise 2: Bump and Normal Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/4/">4: Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE) </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/5/">5: Exercise 4: Environment Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/6/">6: Exercise 5: Shadow Maps </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/7/">7: Multi-Pass Rendering </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

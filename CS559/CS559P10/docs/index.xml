@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Workbook 10: Fancier Textures and Lighting</title>
+    <link>/docs/</link>
+    <description>Recent content in Docs on Workbook 10: Fancier Textures and Lighting</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2020 11:25:03 -0500</lastBuildDate>
+    
+	<atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fancy Texturing</title>
+      <link>/docs/1/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:01 -0500</pubDate>
+      
+      <guid>/docs/1/</guid>
+      <description>There are three categories of things we need to think about:
+ The &amp;ldquo;science&amp;rdquo; - how do the methods work? The &amp;ldquo;engineering&amp;rdquo; - how do we use the methods in practice? (specifically, in a practical API) The &amp;ldquo;art&amp;rdquo; - how do we use these to create interesting effects?  For 1 (the science), we&amp;rsquo;ll discuss how the methods work in theory in class, as well as the required readings. Make sure you understand it.</description>
+    </item>
+    
+    <item>
+      <title>Exercise 1: Material Property Maps</title>
+      <link>/docs/2/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:01 -0500</pubDate>
+      
+      <guid>/docs/2/</guid>
+      <description>Up until now, we&amp;rsquo;ve only been using texture to change colors. However, we can use a texture to control just about any property of a material. If you look at the documentation for MeshStandardMaterial, you can see a lot of the things we control about materials (like roughness, emission, and metalness) can be controlled with a map as well instead of giving a single value for the entire object.
+For this exercise, pick one (or more) of those properties, and make a map that controls the property over the object.</description>
+    </item>
+    
+    <item>
+      <title>Exercise 2: Bump and Normal Maps</title>
+      <link>/docs/3/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:02 -0500</pubDate>
+      
+      <guid>/docs/3/</guid>
+      <description>Normal Maps Normal maps are the concept that we&amp;rsquo;ll use textures to change the apparent shape of the object by using the texture to modulate the normals on the surface so it interacts with light differently than it normally would.
+We&amp;rsquo;ll discuss the details in class. Normal maps are described very briefly in the required reading (11.4.2).
+The basic idea is that the R,G,B channels of the texture map will give us the X,Y,Z direction of the normal vector.</description>
+    </item>
+    
+    <item>
+      <title>Exercise 3: Sky Boxes (or: Not-Really-Sky-Boxes and THREE)</title>
+      <link>/docs/4/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:02 -0500</pubDate>
+      
+      <guid>/docs/4/</guid>
+      <description>A Sky Box is a big object that surrounds the world on which you put a texture, so the background isn&amp;rsquo;t just a solid color. The idea is that it is infinitely far away (so all regular objects are in front of it).
+A Sky Box is not just a big box (or Sphere) around the objects in the world! It needs to do special things to be &amp;ldquo;infinitely far away&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Exercise 4: Environment Maps</title>
+      <link>/docs/5/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:03 -0500</pubDate>
+      
+      <guid>/docs/5/</guid>
+      <description>On the previous page, we learned about texture maps that surround objects. On that page, we just looked at them. On this page, we&amp;rsquo;ll use them to fake reflections on objects. This is called Environment Mapping. Since all lighting is basically reflections, environment mapping becomes an important method for faking fancy lighting. The required reading deals with environment mapping briefly in Section 11.4.5 (where they refer to it as reflection mapping).</description>
+    </item>
+    
+    <item>
+      <title>Exercise 5: Shadow Maps</title>
+      <link>/docs/6/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:03 -0500</pubDate>
+      
+      <guid>/docs/6/</guid>
+      <description>In class, we&amp;rsquo;ll learn how shadow maps work. Fortunately, you don&amp;rsquo;t have to implement them (there are some tricky details), since they are build into THREE.
+Shadow maps are different than other kinds of maps. They are pictures made from cameras positioned at the light sources. We don&amp;rsquo;t use them for colors (or surface properties), we use them for depth testing (to see if the camera at the light source can see each point in the scene).</description>
+    </item>
+    
+    <item>
+      <title>Multi-Pass Rendering</title>
+      <link>/docs/7/</link>
+      <pubDate>Thu, 02 Apr 2020 11:25:03 -0500</pubDate>
+      
+      <guid>/docs/7/</guid>
+      <description>We will talk about the concept of multi-pass rendering in lecture. We&amp;rsquo;ll focus on a particular kind of multi-pass rendering: where we draw the scene from some other viewpoint than the camera that is ultimately making the picture, store that picture somewhere, and use it (often as a texture) when we make the final picture.
+This is useful for many things, for example:
+ Reflections (we take a picture of what the mirror sees and put that on the mirror, this is kindof a simple form of Environment Map) Shadows (we take a picture of what the light sees, and only light those parts) Environments (rather than pre-painting an environment map, we render a picture of the world so the correct things show up)  From an implementation perspective these things involve:</description>
+    </item>
+    
+  </channel>
+</rss>
