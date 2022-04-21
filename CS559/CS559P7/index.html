@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta name="generator" content="Hugo 0.65.3" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/workbook.css">
+        <script src="./js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main list" role="main">
+	<header class="main__header">
+		<h1 class="main__title">CS559 Workbook 7 - 3D and THREE</h1>
+	</header>
+	<div class="content main__content clearfix">
+		<p>In this workbook, we&rsquo;ll move on to doing some 3D programming. To do this, we&rsquo;ll use a Javascript library called <strong>THREE.js</strong> (we&rsquo;ll just say THREE from now on).</p>
+<p>There are two major goals in this workbook:</p>
+<ol>
+<li>Get you set up with the mechanics of using THREE.js</li>
+<li>Get you to make some basics 3D pictures and animations using THREE.js and the basic pieces</li>
+</ol>
+<p>The idea is that once you&rsquo;ve gotten started, it will be easier to explain both what is happening &ldquo;underneath the hood&rdquo; as well as fancier things. However, one down side of this strategy is that you may not always understand why you are doing things (since we aren&rsquo;t explaining how things work), and you may wonder why we are limiting ourselves to simple things (because we are saving more complicated stuff for later).</p>
+<h2 id="required-and-recommended-reading">Required and Recommended Reading</h2>
+<p>There are two parts to the reading: you need to learn about the THREE.js library in order to use it, and you need to learn about the basic concepts of transformations in 3D (since you need to know them). You don&rsquo;t need to understand the graphics stuff in order to do the workbook, but you will want to know it for the quiz and exam, and if you really want to know graphics.</p>
+<p><strong>Learning THREE:</strong>
+The official documentation can be found <a href="https://threejs.org/docs/">here</a>. This is mainly a reference. Once you get started you can look up the details of the things you need.</p>
+<p>Be warned: a lot of the fancier stuff may not make sense until we&rsquo;ve talked about what is happening &ldquo;under the hood&rdquo;. The documentation dives into details quite quickly. The workbook is designed to guide you through the basics. Then use the official documentation as a reference to get the details as you need them .</p>
+<p>The workbook and lectures should give you enough of an idea of how THREE works to do the workbook, but you might want to see other things to help you. We have not included THREE.js in its entirety, mostly excluding many of the examples. We only included enough to get you through the workbooks. You can download the entire library if you wish, but please don&rsquo;t add it to your git repo if you do. While there are a lot of THREE resources around the web, and the API documentation is pretty complete, things tend not to be that well organized, or really great for beginning. If you find good additional resources, please post them on Piazza. Here are some thing I found useful:</p>
+<ul>
+<li>
+<p><a href="https://github.com/mrdoob/three.js/wiki/Getting-Started">THREE.js Getting Started</a> - Shows you the minimum that you need to do. It&rsquo;s a bit redundant with this workbook, but seeing things in someone else&rsquo;s words may be useful.</p>
+</li>
+<li>
+<p><a href="https://medium.com/@benjamin.c.coleman/the-beginners-guide-to-beginning-three-js-c36b8947c2aa">THREE.js Tutorial</a> - This is very similar to the way we&rsquo;ll introduce things in this workbook. Read this to see what we&rsquo;re talking about said in different words.</p>
+</li>
+<li>
+<p><a href="https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/">Aviator Game</a> - this is a complicated example that builds things up from scratch. It&rsquo;s a bit of a fancy application to start with, but you can see how the author builds something pretty cool using the pieces we&rsquo;ll learn about.</p>
+</li>
+</ul>
+<p><strong>The textbooks:</strong> Between now and the exam, you need to understand transformations in 3D and viewing and projection (which will turn out to be a special case of transformations). THREE takes care of a lot of this for us, so you may not see it when you program. THREE does a good job of hiding the matrices if you don&rsquo;t want to see them (unlike 2D Canvas, it will let you see them).</p>
+<p>When we learned about transformations, we skipped 3D transformations. Now is a good time to come back to them. You are <em>required</em> to read:</p>
+<ul>
+<li>
+<p><a href="https://canvas.wisc.edu/files/10881408/">Hart-Ch6.pdf</a>. This Chapter mixes in many different, but important things, including a review of the vector algebra basics. Not all of the Chapter is essential now, so a bit of a &ldquo;reader&rsquo;s guide&rdquo;:</p>
+<ul>
+<li>6.1 - Scale and Translation - important, but a simple extension of 2D</li>
+<li>6.2 - Handedness of Coordinate Systems - important</li>
+<li>6.3 - Vector Arithmetic - a good review including dot products and cross products. The section on Gramm-Schmidt Orthonormalization is useful, but a more advanced topic and is optional.</li>
+<li>6.4 - Rotation about a Coordinate Axis - important</li>
+<li>6.5 - Properties of Rotation Matrices - the first part is important, the part on Cayley&rsquo;s Formula is optional</li>
+<li>6.6 - Rotation about an Arbitrary Axis - this is very valuable, and good for getting the intuitions about rotations, but is optional since we won&rsquo;t discuss it in detail in class.</li>
+</ul>
+</li>
+</ul>
+<p>You also need to read:</p>
+<ul>
+<li><a href="https://canvas.wisc.edu/files/10881412/">Fundamentals of CG-Ch06.pdf</a>, which mainly just gives the matrices. You might want to go over other parts of the Chapter.</li>
+<li><a href="https://canvas.wisc.edu/files/10881403/">Fundamentals of CG-Ch07.pdf</a>: Viewing - this will explain how cameras work.</li>
+<li><a href="https://canvas.wisc.edu/files/10881457/">Fundamentals of CG-CH12 Section 12.2</a>: Scene Graphs - this reiterates what we&rsquo;ve seen about using transformations to create hierarchical models. You only need Section 12.2 - we&rsquo;ll come back to other parts of this chapter later in the semester.</li>
+</ul>
+<p>You might also want to read (this will be required later):</p>
+<ul>
+<li><a href="https://canvas.wisc.edu/files/10881415/">Fundamentals of CG-Ch08.pdf</a>: The Graphics Pipeline - this will explain how drawing actually happens, with all the steps that the APIs are taking care of for us.</li>
+<li><a href="https://canvas.wisc.edu/files/10881411/">Hart-Ch7.pdf</a> More examples of using transformations. Since getting practice is useful.</li>
+<li><a href="https://canvas.wisc.edu/files/10881410/">Hart-Ch8.pdf</a> Hart&rsquo;s explanation of viewing. This provides another version of what is in FCG7 - useful if you want to see it multiple ways.</li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<p>Most pages have code examples - make sure you understand how they work.</p>
+<p>Pages 4, 5 and 6 have simple examples on them. Make sure they work, and that you understand them.</p>
+<p>Pages <a href="./docs/8/">Page8</a> and <a href="./docs/9/">Page9</a> ask you to make pictures. For now, please focus on understanding the simple stuff: you will have plenty of time later to use fancier features.</p>
+<h2 id="rubric-for-grading">Rubric for Grading</h2>
+<ul>
+<li>
+<p>README - (5pts) - be sure to explain any fancy things the graders might miss</p>
+</li>
+<li>
+<p>Exercise 1 (page 4 box 3) - stacking the boxes as described (10pts, 5 for moving the boxes, 5 for them having the correct heights)</p>
+</li>
+<li>
+<p>Exercise 2 (page 5 box 3) - add lights to scene so that sides of the cubes appear in different colors (10 pts)</p>
+</li>
+<li>
+<p>Exercise 3 (page 6 box 1) - give each sphere a different, non-white material (10pts)</p>
+</li>
+<li>
+<p>Exercise 4 (page 8 box 1) - build a snowman as described (38 pts max)</p>
+<ul>
+<li>(10pts) ground and lights</li>
+<li>(10pts) 3 ball snowman</li>
+<li>(2pts) hat</li>
+<li>(10pts) face (eyes, nose, mouth)</li>
+<li>(2pts) cool details (button nose, …)</li>
+<li>(2pts) other accessories (twig arms, corncob pipe, …)</li>
+<li>(3pts) 2nd, creative snowman</li>
+<li>(2pts) other creative features (animation, …)</li>
+</ul>
+</li>
+<li>
+<p>Exercise 5 (page 9 box 1) - create the space-age museum as described (22pts max)</p>
+<ul>
+<li>(9pts) 3 objects</li>
+<li>(5pts) float and spin</li>
+<li>(4pts) spotlights</li>
+<li>(4pts) cameras</li>
+<li>(2pts) interesting object from multiple pieces</li>
+<li>(2pts) interesting motions</li>
+</ul>
+</li>
+</ul>
+<p>For bonus points: While it isn&rsquo;t spelled out explicitly, this workbook is designed with 85 points that are easy to get, and things beyond that are &ldquo;bonus&rdquo;. There is a limit to how many points you can earn for each exercise in terms of your grade for this workbook. However, if you do extra stuff beyond what you can count towards your score, we&rsquo;ll keep track of it and find some way to reward you.</p>
+<h2 id="ground-rules-for-workbook-7">Ground Rules for Workbook 7</h2>
+<p>For the programming assignment, we are going to ask you to make some pictures by writing programs that use THREE. We want you to focus on using the parts that we&rsquo;ve discussed, not trying to show off that you can figure out the fancier features on your own. This is pretty limited because:</p>
+<ul>
+<li>Each primitive object gets one material (and therefore color).</li>
+<li>The primitive objects are solid colors (and not textured).</li>
+<li>We are only using the given &ldquo;primitive&rdquo; shapes (not making our own meshes).</li>
+<li>We aren&rsquo;t using reflections. You do not need to add shadows (but you can keep the ones we have in the starter code)</li>
+<li>We do not want you to add other object models (although, you can use the sample ones we provided).</li>
+<li>We aren&rsquo;t making our own new kinds of materials (by writing shaders).</li>
+</ul>
+<p>You&rsquo;ll get to do all of these things later in the class. For now, you can be creative and make sure you understand how to put together the basic pieces.</p>
+<h2 id="get-started">Get Started</h2>
+<p>Don&rsquo;t forget to commit and push as you work! And fill in README.md.</p>
+<p>Get started on <a href="./docs/1/">Page1(The THREE.js library)</a>.</p>
+
+	</div>
+    <ul>
+    
+    
+    </ul>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 7: 3D and THREE</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Selected">Index (CS559 Workbook 7 - 3D and THREE) </li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/1/">1: The THREE.js library </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/2/">2: Elements of 3D Graphics Programming </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/3/">3: Making a Scene </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/4/">4: Primitive Objects and Basic Transformations </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/5/">5: Lights, Camera, Action! </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/6/">6: Materials </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/7/">7: Animation and THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/8/">8: Snowman </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="./docs/9/">9: Space-Age Sculpture Museum </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CS559 Workbook 7 - 3D and THREE on Workbook 7: 3D and THREE</title>
+    <link>/</link>
+    <description>Recent content in CS559 Workbook 7 - 3D and THREE on Workbook 7: 3D and THREE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The THREE.js library</title>
+      <link>/docs/1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/1/</guid>
+      <description>On this page, we&amp;rsquo;ll just deal with the mechanics of using the THREE.js library, and some of the issues specific to using the library in the way we&amp;rsquo;ve been programming in class.
+Box 1: Check that things work Just to make sure that things work, here is a simple scene made with the THREE library (1-1.html and 1-1.js). You should see a spinning green cube.
+ If you don&amp;rsquo;t see the picture, something is wrong.</description>
+    </item>
+    
+    <item>
+      <title>Elements of 3D Graphics Programming</title>
+      <link>/docs/2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/2/</guid>
+      <description>On this page, we&amp;rsquo;ll try to understand what those programs on the prior page actually did. This page is somewhat redundant with all of the THREE.js tutorials out there, but we try to organize it to emphasize how the things that we need to do in the API will connect with the graphics concepts we&amp;rsquo;ll learn about in class (and exist no matter what the API is).
+Elements of 3D Drawing THREE.</description>
+    </item>
+    
+    <item>
+      <title>Making a Scene</title>
+      <link>/docs/3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/3/</guid>
+      <description>On this page, we&amp;rsquo;ll connect some of the very most basic things in graphics to their concepts in THREE.
+THREE&amp;rsquo;s coordinate system THREE is a scene graph API where we place graphics objects into the world, and then have it draw that world.
+THREE uses a right handed coordinate system. For us, we&amp;rsquo;ll always think about y going up, so that the &amp;ldquo;ground&amp;rdquo; is the x z plane.
+This &amp;ldquo;y-up&amp;rdquo; model also is how we&amp;rsquo;ll view the screen.</description>
+    </item>
+    
+    <item>
+      <title>Primitive Objects and Basic Transformations</title>
+      <link>/docs/4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/4/</guid>
+      <description>Objects Objects in THREE are subclasses of Object3D. This same base class is used for all the things we put into the world: lights, camera, the actual &amp;ldquo;things&amp;rdquo; we see.
+The nice part of this is that all objects get the same common functionality.
+The main kind of &amp;ldquo;thing&amp;rdquo; we&amp;rsquo;ll put in the world is a Mesh. A Mesh basically is a collection of triangles (in the form of a Geometry object).</description>
+    </item>
+    
+    <item>
+      <title>Lights, Camera, Action!</title>
+      <link>/docs/5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/5/</guid>
+      <description>The Camera The &amp;ldquo;normal&amp;rdquo; camera we will use to make scenes is the PerspectiveCamera - see its documentation.
+By default, the camera looks down the negative Z axis, and it&amp;rsquo;s default position is at the origin. Therefore, we almost always need to position it (to place the eye point at someplace useful), and rotate it (to aim the camera at something interesting). Fortunately, the camera in THREE is like any other Object3D and has a full complement of positioning and orienting functions.</description>
+    </item>
+    
+    <item>
+      <title>Materials</title>
+      <link>/docs/6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/6/</guid>
+      <description>Materials are the abstraction in THREE that controls how the shapes look - what colors the pixels of the triangles ultimately are shown in the resulting image.
+In the future, we&amp;rsquo;ll learn about how Materials contains programs that tell the graphics hardware how to color each pixel. And we&amp;rsquo;ll see how we can make new materials by writing programs for the hardware.
+For now, we should notice a few parts of what materials can do:</description>
+    </item>
+    
+    <item>
+      <title>Animation and THREE</title>
+      <link>/docs/7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/7/</guid>
+      <description>Animating using THREE is very similar to how we&amp;rsquo;ve been doing other web animation. We use requestAnimationFrame to set up an animation loop that calls our drawing function, and as part of the drawing function we make any changes that we want to have in the picture and redraw the picture.
+Because THREE is a scene graph API, we make changes by adjusting the existing objects, rather than by recreating new graphics objects.</description>
+    </item>
+    
+    <item>
+      <title>Snowman</title>
+      <link>/docs/8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/8/</guid>
+      <description>Box 1: Exercise 4, Make a snowman using THREE! You should make the snowman using THREE primitives. You can use spheres for the snowballs (the main parts of the body), a cone to make a carrot nose, a cylinder and a ring to make a top hat, &amp;hellip;
+You&amp;rsquo;ll need to make primitives (Spheres, Cones, &amp;hellip;) and use their transformations (position, scale, rotation) to assemble the snowman.
+You can use simple materials of different colors (e.</description>
+    </item>
+    
+    <item>
+      <title>Space-Age Sculpture Museum</title>
+      <link>/docs/9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/9/</guid>
+      <description>Box 1: Exercise 5, Curate your own Museum! In this part of the assignment, we give you some starter code for a &amp;ldquo;museum.&amp;rdquo; It has pedestals to display things, spotlights to shine on them, and cameras to look at each thing in more detail. The only problem - this museum doesn&amp;rsquo;t have much on display. We say &amp;ldquo;space-age&amp;rdquo; because the objects magically float above their pedestals.
+Your job is to add some new objects for museum visitors to see.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Space-Age Sculpture Museum</h1>
+		</header>
+		<div class="content post__content clearfix">
+			<h2 id="box-1-exercise-5-curate-your-own-museum">Box 1: Exercise 5, Curate your own Museum!</h2>
+<p>In this part of the assignment, we give you some starter code for a &ldquo;museum.&rdquo; It has pedestals to display things, spotlights to shine on them, and cameras to look at each thing in more detail. The only problem - this museum doesn&rsquo;t have much on display.
+We say &ldquo;space-age&rdquo; because the objects magically float above their pedestals.</p>
+<p>Your job is to add some new objects for museum visitors to see. We&rsquo;ve given you one simple object to start with. You must add three more objects, to fill the other three pedestals.
+You may build these objects up from primitives as you did with the snowman, or you may import any of the sample objects in the <code>for_students/objects/</code> folder included in the project. Please do <strong>not</strong> import objects you find online. We need to limit the number of items to download for grading.</p>
+<p>As with the snowman, you can use simple materials of different colors (e.g., <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial">MeshPhongMaterial</a> or <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial">MeshStandardMaterial</a>.
+Again, the point is not to have the fanciest material, just try different settings out and see what you come up with.</p>
+<p>Now, it would be boring if the objects simply sat on the pedestals. You will add a cool sci-fi effect and set each object to float just above its pedestal, spinning slowly in place. If you want the effect to be more convincing, you could (optionally) embellish the motion by making the objects bob slightly, as if they were suspended in some kind of energy field.</p>
+<p>In addition, you will need to adjust the position and rotation of the provided spotlights and cameras such that each spotlight shines on <em>one</em> object, and cameras 1, 2, 3, and 4 each point at <em>one</em> object. The &ldquo;main&rdquo; camera should remain in the same position and orientation.</p>
+<p>Recap of requirements:</p>
+<ul>
+<li>Add three objects (built from primitives or imported from <code>for_students/objects/</code> folder).</li>
+<li>Give each object a material.</li>
+<li>Make each object float and slowly spin above its pedestal.</li>
+<li>Move each spotlight to shine down on one of the objects/pedestals.</li>
+<li>Move each camera (other than &ldquo;main&rdquo;) to point at one of the objects.</li>
+</ul>
+<p>A basic example (from the <em>main</em> camera view) is shown below:</p>
+<figure>
+    <img src="../../images/A06-9-1.jpg"
+         alt="museum example" width="600"/> 
+</figure>
+
+<p>We&rsquo;ve given you a start in <a href="../../for_students/9-1.js" class="for_students">9-1.js</a> (<a href="../../for_students/9-1.html" class="for_students">9-1.html</a>) where you should put your code. Some details of the starter code are given below.</p>
+<p>The first portion of the code (up to line 33 or so) just sets up the basic scene. You can find the functions called there at the bottom of the file, including the code that creates the pedestals. There you can find out the positions of the pedestals, so you know where to put your objects. The next block of code sets up a single cube on top of a pedestal, with a spotlight pointed at it, to demonstrate what you need to do.</p>
+<p>After this, there is code to generate the remaining three spotlights, and the four cameras that will individually point at objects in your scene. You can use the cube example for reference on the names of methods/properties that you need to set.</p>
+<p>Finally, there is an &ldquo;animate&rdquo; function, where you should add the code that makes your objects float and rotate above their pedestals.</p>
+<p>Note: we turn on shadows in the starter code. You can safely ignore this - you do not need to make shadows work on you objects and lights. You can copy what we did for the example objects (it&rsquo;s not hard), but we will not give you extra credit for doing it. We will explain how shadows work (and why turning them on requires several steps) later in the semester.</p>
+<iframe src="../../for_students/9-1.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<h2 id="ground-rules-for-workbook-7">Ground Rules for Workbook 7</h2>
+<p>For the programming assignment, we are going to ask you to make some pictures by writing programs that use THREE. We want you to focus on using the parts that we&rsquo;ve discussed, not trying to show off that you can figure out the fancier features on your own. This is pretty limited because:</p>
+<ul>
+<li>Each primitive object gets one material (and therefore color).</li>
+<li>The primitive objects are solid colors (and not textured).</li>
+<li>We are only using the given &ldquo;primitive&rdquo; shapes (not making our own meshes).</li>
+<li>We aren&rsquo;t using reflections. You do not need to add shadows (but you can keep the ones we have in the starter code)</li>
+<li>We do not want you to add other object models (although, you can use the sample ones we provided).</li>
+<li>We aren&rsquo;t making our own new kinds of materials (by writing shaders).</li>
+</ul>
+<p>You&rsquo;ll get to do all of these things later in the class. For now, you can be creative and make sure you understand how to put together the basic pieces.</p>
+
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 7: 3D and THREE</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (CS559 Workbook 7 - 3D and THREE)</a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/1/">1: The THREE.js library </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: Elements of 3D Graphics Programming </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/3/">3: Making a Scene </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/4/">4: Primitive Objects and Basic Transformations </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/5/">5: Lights, Camera, Action! </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/6/">6: Materials </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/7/">7: Animation and THREE </a></li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/8/">8: Snowman </a></li>
+        <li class="Side__Item Side__Selected"> 9: Space-Age Sculpture Museum </li>
+</ul>
+</div>
+</div>
+    </body>
+</html>
