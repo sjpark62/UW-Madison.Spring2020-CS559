@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../../css/workbook.css">
+        <script src="../../js/resizeIFrames.js"></script>
+    </head>
+    <body>
+        <div class="container container--outer"><div class="maincolumn">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Some leftovers</h1>
+		</header>
+		<div class="content post__content clearfix">
+			<p>This page isn't related to the train,  it has a detail that was left out of prior workbooks.</p>
+<h2 id="polygon-filling">Polygon Filling</h2>
+<p>In class, we discussed that there were different rules for filling polygons, and that HTML 2D Canvas supported multiple ones. We went over the rules briefly in class.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fill">official documentation</a> for <code>fill</code> says very little about the difference between the two rules (&ldquo;non-zero&rdquo; and &ldquo;even-odd&rdquo;). It defers to Wikipedia to explain <a href="http://en.wikipedia.org/wiki/Nonzero-rule">non-zero</a> and <a href="http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule">even-odd</a>.</p>
+<p>The <a href="https://html.spec.whatwg.org/multipage/canvas.html#fill-rule">HTML Living Standard</a> has a nice concise explanation:</p>
+<ul>
+<li>
+<p>The value &ldquo;nonzero&rdquo; value indicates the nonzero winding rule, wherein a point is considered to be outside a shape if the number of times a half-infinite straight line drawn from that point crosses the shape's path going in one direction is equal to the number of times it crosses the path going in the other direction.</p>
+</li>
+<li>
+<p>The &ldquo;evenodd&rdquo; value indicates the even-odd rule, wherein a point is considered to be outside a shape if the number of times a half-infinite straight line drawn from that point crosses the shape's path is even.</p>
+</li>
+</ul>
+<p>In box 1-1, (<a href="../../for_students/1-1.html" class="for_students">1-1.html</a> and <a href="../../for_students/1-1.js" class="for_students">1-1.js</a>), practice using these two different fill rules: draw the same path twice, such that you get a different picture when you draw it with the different rules. Your path should include some curved segments. Please do not use the example I showed in lecture. Use a translation to make the paths not be on top of each other.</p>
+<p>Actually, I'll give you a head start&hellip;</p>
+<iframe src="../../for_students/1-1.html" width="100%" height="100%" scrolling="no" frameborder="0" style="overflow:hidden;height:100%;width:100%;border: 2px solid gray;border-radius: 5px;"></iframe>
+<h2 id="more-stuff">More stuff</h2>
+<p>There are other things that could go here, but I want you to get to the train.</p>
+<p>OK, now on to <a href="../../docs/2/" class="Next__Page">Next: The Train </a></p>
+
+		</div>
+	</article>
+</main>
+
+                </div>
+                <div class="sidebar">
+<h2 class="Side_Title">Workbook 6: The Train! (and another thing)</h2>
+<p class="Side__Note">Pages:</p>
+<ul class="Side__List">
+    <li class="Side__Item Side__Unselected"><a href="../../">Index (CS559 Workbook 6: The train)</a></li>
+        <li class="Side__Item Side__Selected"> 1: Some leftovers </li>
+        <li class="Side__Item Side__Unselected"> <a href="../../docs/2/">2: The Train </a></li>
+</ul>
+</div>
+</div>
+    </body>
+</html>
